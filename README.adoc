@@ -1,0 +1,20 @@
+= TinyRockOS
+
+TinyRockOS is a minimalistic and plugable general pourpouse operating system.
+
+== Documentation
+
+You can found the project documentation https://github.com/tinyrocklab/tinyrockos/tree/main/docs[here].
+
+## Versioning
+
+We use http://semver.org/[SemVer] for versioning.  For the versions available, see the  https://github.com/tinyrocklab/tinyrockos/releases[releases on this repository] and the https://github.com/tinyrocklab/tinyrockos/tree/main/CHANGELOG.adoc[changelog].
+
+## License
+
+This project is under https://github.com/tinyrocklab/tinyrockos/tree/main/LICENSE[MIT License].
+
+
+## Authors
+
+- Alejandro Alonso Mayo - https://github.com/AlejandroAM91[github] - mailto:alejandroalonsomayo@gmail.com[mail]

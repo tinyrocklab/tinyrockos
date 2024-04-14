@@ -1,0 +1,14 @@
+= Repository
+
+In this file we will describe how the repository is used.
+
+== Folder structure
+
+|===
+| Directory         | Content
+
+| .vscode/          | VSCode IDE project configuration
+| docs/             | Project documentation
+| docs/developers/  | Developers documentation
+| docs/users/       | Users documentation
+|===
