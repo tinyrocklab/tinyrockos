@@ -1,0 +1,11 @@
+# Project structure
+
+In this file we will describe the MinOS file hierarchy standard.
+
+|===
+| Directory                   | Content
+
+| /                           | Root folder
+| /system                     | Inmutable system folder
+| /system/boot                | Boot required files including kernel and initrd
+|===
