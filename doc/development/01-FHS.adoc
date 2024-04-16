@@ -16,7 +16,13 @@ In this file we will describe the MinOS file hierarchy standard.
 | Directory  | Content
 
 | /          | Root
-| /bin       |
-| /lib       |
+| /bin       | Binaries
+| /bin/app   | Applications and commands
+| /bin/lib   | Libraries
+| /bin/srv   | Services
+| /res       | Resources
+| /res/man   | Manual
 | /src       | Source Code
 |===
+
+The previous folders can be splitted in multiple packages. Such as <pkg>-client, <pkg>-common, <pkg>-server, <pkg>-src, etc...
