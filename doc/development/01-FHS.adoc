@@ -1,4 +1,4 @@
-# Project structure
+= Folder Structure
 
 In this file we will describe the MinOS file hierarchy standard.
 
@@ -8,4 +8,15 @@ In this file we will describe the MinOS file hierarchy standard.
 | /                           | Root folder
 | /system                     | Inmutable system folder
 | /system/boot                | Boot required files including kernel and initrd
+|===
+
+== Package Folder Structure
+
+|===
+| Directory  | Content
+
+| /          | Root
+| /bin       |
+| /lib       |
+| /src       | Source Code
 |===
