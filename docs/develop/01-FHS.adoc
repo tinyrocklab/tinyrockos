@@ -1,0 +1,23 @@
+= Folder Structure
+
+In this file we will describe the TinyRockOS file hierarchy standard.
+
+|===
+| Directory                   | Content
+
+| /                           | Root folder
+| /boot                       | Boot required files including kernel and initramfs
+| /packages                   | User packages
+| /system                     | Inmutable system folder
+|===
+
+== Package Folder Structure
+
+|===
+| Directory  | Content
+
+| /          | Root
+| /bin       | Binaries
+|===
+
+The previous folders can be splitted in multiple packages. Such as <pkg>-client, <pkg>-common, <pkg>-server, <pkg>-src, etc...
