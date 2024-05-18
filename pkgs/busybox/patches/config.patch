@@ -1,0 +1,12 @@
+diff --color -Naur busybox-1.36.1/.config busybox-1.36.1-patch/.config
+--- busybox-1.36.1/.config	2024-05-18 21:27:28.740495575 +0200
++++ busybox-1.36.1-patch/.config	2024-05-18 21:32:23.570459577 +0200
+@@ -40,7 +40,7 @@
+ #
+ # Build Options
+ #
+-# CONFIG_STATIC is not set
++CONFIG_STATIC=y
+ # CONFIG_PIE is not set
+ # CONFIG_NOMMU is not set
+ # CONFIG_BUILD_LIBBUSYBOX is not set
