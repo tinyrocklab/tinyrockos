@@ -18,7 +18,7 @@ all: $(SRCDIR)/arch/$(ARCH)/boot/bzImage
 
 .PHONY: clean
 clean:
-	-$(RM) -r $(BUILDDIR)
+	@-$(RM) -r $(BUILDDIR)
 
 .PHONY: install
 install: $(SRCDIR)/arch/$(ARCH)/boot/bzImage
@@ -32,6 +32,7 @@ $(SRCDIR)/arch/$(ARCH)/boot/bzImage: $(SRCDIR)/.config $(SRCDIR)/Makefile
 $(SRCDIR)/.config: $(SRCDIR)/Makefile
 	$(info Configuring package...)
 	@$(MAKE) -C $(@D) defconfig
+	@(cd $(SRCDIR) && patch -p1 < $(CURDIR)/patches/config.patch)
 
 $(SRCDIR)/Makefile: $(BUILDDIR)/$(PKG_DIST_NAME)
 	$(info Uncompressing tarball...)
