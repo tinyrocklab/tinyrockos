@@ -17,8 +17,9 @@ all: $(BUILDDIR)/$(PKG_NAME)-$(PKG_VERSION).iso
 
 .PHONY: clean
 clean:
-	@-$(RM) -r $(BUILDDIR)/$(PKG_NAME)-rootfs-$(PKG_VERSION).tar.gz $(BUILDDIR_ROOTFS)
+	@-$(RM) -r $(BUILDDIR)
 	@$(MAKE) -C $(PKGSDIR)/busybox clean
+	@$(MAKE) -C $(PKGSDIR)/linux clean
 
 $(BUILDDIR)/$(PKG_NAME)-rootfs-$(PKG_VERSION).sfs $(BUILDDIR_ISOFS)/boot/root.sfs: %.sfs: $(BUILDDIR_ROOTFS)/system/bin/busybox
 	$(info Generating $(@F)...)
