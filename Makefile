@@ -11,18 +11,25 @@ SRCDIR=$(CURDIR)/src
 SRCDIR_INITRAMFS=$(SRCDIR)/init
 
 .PHONY: all
-all: $(BUILDDIR)/$(PKG_NAME)-rootfs-$(PKG_VERSION).tar.gz $(BUILDDIR)/$(PKG_NAME)-$(PKG_VERSION).iso
+all: $(BUILDDIR)/$(PKG_NAME)-rootfs-$(PKG_VERSION).sfs
+all: $(BUILDDIR)/$(PKG_NAME)-rootfs-$(PKG_VERSION).tar.gz
+all: $(BUILDDIR)/$(PKG_NAME)-$(PKG_VERSION).iso
 
 .PHONY: clean
 clean:
 	@-$(RM) -r $(BUILDDIR)/$(PKG_NAME)-rootfs-$(PKG_VERSION).tar.gz $(BUILDDIR_ROOTFS)
 	@$(MAKE) -C $(PKGSDIR)/busybox clean
 
+$(BUILDDIR)/$(PKG_NAME)-rootfs-$(PKG_VERSION).sfs $(BUILDDIR_ISOFS)/boot/root.sfs: %.sfs: $(BUILDDIR_ROOTFS)/system/bin/busybox
+	$(info Generating $(@F)...)
+	@mkdir -p $(@D)
+	@mksquashfs $(BUILDDIR_ROOTFS) $@ -noappend
+
 $(BUILDDIR)/$(PKG_NAME)-rootfs-$(PKG_VERSION).tar.gz: $(BUILDDIR_ROOTFS)/system/bin/busybox
 	$(info Generating $(@F)...)
 	@tar -C $(BUILDDIR_ROOTFS) -czf $@ .
 
-$(BUILDDIR)/$(PKG_NAME)-$(PKG_VERSION).iso: $(BUILDDIR_ISOFS)/boot/bzImage $(BUILDDIR_ISOFS)/boot/initramfs.cpio
+$(BUILDDIR)/$(PKG_NAME)-$(PKG_VERSION).iso: $(BUILDDIR_ISOFS)/boot/root.sfs $(BUILDDIR_ISOFS)/boot/bzImage $(BUILDDIR_ISOFS)/boot/initramfs.cpio
 	$(info Generating $(@F)...)
 	@xorriso -as mkisofs $(BUILDDIR_ISOFS) -o $@ 2> /dev/null
 
