@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+echo "$DESTDIR"
+
+local pkgname=openrc
+local pkgver=0.54
+
+pkgbuild_source_name=$pkgname-$pkgver
+pkgbuild_tarball_name=$pkgbuild_source_name.tar.gz
+pkgbuild_tarball_url=https://github.com/OpenRC/openrc/archive/refs/tags/$pkgver.tar.gz
+
+pkgbuild_build() {
+    (cd $pkgbuild_srcdir/$pkgbuild_source_name && meson setup $pkgbuild_builddir)
+    meson compile -C $pkgbuild_builddir
+}
+
+pkgbuild_install() {
+    local target="$DESTDIR/system"
+
+    DESTDIR=$pkgbuild_pkgdir/.tmp meson install -C $pkgbuild_builddir
+
+    install -d $target/bin
+    install $pkgbuild_pkgdir/.tmp/sbin/openrc-init $target/bin
+}
