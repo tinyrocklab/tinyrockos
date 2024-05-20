@@ -1,0 +1,22 @@
+local pkgname=linux
+local pkgversion=6.9.1
+local pkgversionmajor=$(echo $pkgversion | sed 's/\.[0-9]*//g')
+local pkgarch=x86_64
+
+pkgbuild_source_name=$pkgname-$pkgversion
+pkgbuild_tarball_name=$pkgbuild_source_name.tar.xz
+pkgbuild_tarball_url=https://cdn.kernel.org/pub/linux/kernel/v$pkgversionmajor.x/$pkgbuild_tarball_name
+
+pkgbuild_build() {
+    make -j8 -C $pkgbuild_srcdir/$pkgbuild_source_name
+}
+
+pkgbuild_install() {
+    local target="$DESTDIR/boot"
+    install -d $target
+    install $pkgbuild_srcdir/arch/x86_64/boot/bzImage $target
+}
+
+pkgbuild_prepatch() {
+    make -C $pkgbuild_srcdir/$pkgbuild_source_name defconfig
+}
